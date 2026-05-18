@@ -52,7 +52,8 @@ impl OrbitPayFunding {
         env.storage()
             .persistent()
             .set(&DataKey::Intent(id.clone()), &intent);
-        env.events().publish((Symbol::new(&env, "intent_created"), id), ());
+        env.events()
+            .publish((Symbol::new(&env, "intent_created"), id), ());
         intent
     }
 
@@ -83,7 +84,8 @@ impl OrbitPayFunding {
 
         intent.settled = true;
         env.storage().persistent().set(&key, &intent);
-        env.events().publish((Symbol::new(&env, "intent_settled"), id), ());
+        env.events()
+            .publish((Symbol::new(&env, "intent_settled"), id), ());
         intent
     }
 
@@ -100,11 +102,11 @@ impl OrbitPayFunding {
         }
 
         env.storage().persistent().remove(&key);
-        env.events().publish((Symbol::new(&env, "intent_cancelled"), id), ());
+        env.events()
+            .publish((Symbol::new(&env, "intent_cancelled"), id), ());
         intent
     }
 }
-
 #[cfg(test)]
 mod test {
     use super::*;
@@ -135,4 +137,3 @@ mod test {
         assert_eq!(stored.asset_code, String::from_str(&env, "USDC"));
     }
 }
-
