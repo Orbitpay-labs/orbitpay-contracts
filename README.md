@@ -32,7 +32,7 @@ cargo test
 soroban contract build
 ```
 
-## Drips Wave Issue Seeds
+## Contributor Issue Seeds
 
 - Implement token transfer calls using Soroban token client.
 - Add admin-free merchant intent creation.
